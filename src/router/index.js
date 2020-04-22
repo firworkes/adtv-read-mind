@@ -25,6 +25,16 @@ Vue.use(VueRouter)
     path: '/demo',
     name: 'Demo',
     component: () => import('../views/Demo.vue')
+  },
+  {
+    path: '/behavior',
+    name: 'Behavior',
+    component: () => import('../views/Behavior.vue')
+  },
+  {
+    path: '/draggableList',
+    name: 'DraggableList',
+    component: () => import('../views/DraggableList.vue')
   }
 
 ]
