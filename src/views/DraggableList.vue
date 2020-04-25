@@ -1,51 +1,17 @@
 <template>
   <div style="display: flex">
-    <div class="my_tabs" style="marginRight: 30px">
-      <ul class="tabs" id="items" :style="{width: `${tabWidth}px`}">
-        <li
-          :class="{active: active == index}"
-          @mousedown="tabsBtn(index)"
-          @click="tabsBtn(index)"
-          v-for="(item,index) in list"
-          :key="index"
-        >{{ item.title }}</li>
-      </ul>
-      <div
-        :style="{width: `${tabWidth}px`}"
-        class="tabs-content"
-        v-for="(item,index) in listData"
-        :key="index"
-        v-show="active == index"
-      >
-        <div class="tabs-content-box">{{ item }}</div>
-      </div>
-    </div>
-    <div>
-      <ul class="tabs" id="newItems" :style="{width: `${tabWidth}px`}">
-        <li
-          :class="{newActive: newActive == index}"
-          @mousedown="newTabsBtn(index)"
-          @click="newTabsBtn(index)"
-          v-for="(item,index) in newList"
-          :key="index"
-        >{{ item.title }}</li>
-      </ul>
-      <div
-        :style="{width: `${tabWidth}px`}"
-        class="tabs-content"
-        v-for="(item,index) in newListData"
-        :key="index"
-        v-show="newActive == index"
-      >
-        <div>{{ item }}</div>
-      </div>
-    </div>
+    <draggableTabs id="items" :listTitle="list" :listData="listData" :tabWidth=600></draggableTabs>
+    <draggableTabs id="newitems" :listTitle="newList" :listData="newListData" :tabWidth=600></draggableTabs>
   </div>
 </template>
 
 <script>
 import Sortable from "sortablejs";
+import draggableTabs from '../components/DraggableTabs';
 export default {
+  components: {
+    draggableTabs
+  },
   data() {
     return {
       tabWidth: 600,
@@ -57,7 +23,6 @@ export default {
         { id: "4", title: "导航四" }
       ],
       listData: ["content1", "content2", "content3", "content4"],
-      newActive: "",
       newList: [
         { id: "1", title: "一" },
         { id: "2", title: "二" },
@@ -68,26 +33,26 @@ export default {
     };
   },
   mounted() {
-    this.showList();
-    this.newShowList();
+    // this.showList();
+    // this.newShowList();
   },
   methods: {
-    showList() {
-      var el = document.getElementById("items");
-      var sortable = Sortable.create(el, {
-        // direction: "horizontal",
-        group: "shared",
-        animation: 150
-      });
-    },
-    newShowList() {
-      var el = document.getElementById("newItems");
-      var sortable = Sortable.create(el, {
-        // direction: "horizontal",
-        group: "shared",
-        animation: 150
-      });
-    },
+    // showList() {
+    //   var el = document.getElementById("items");
+    //   var sortable = Sortable.create(el, {
+    //     // direction: "horizontal",
+    //     group: "shared",
+    //     animation: 150
+    //   });
+    // },
+    // newShowList() {
+    //   var el = document.getElementById("newItems");
+    //   var sortable = Sortable.create(el, {
+    //     // direction: "horizontal",
+    //     group: "shared",
+    //     animation: 150
+    //   });
+    // },
 
     tabsBtn(index) {
       this.active = index;

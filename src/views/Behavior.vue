@@ -31,13 +31,15 @@ export default {
             id: "node2",
             x: 300,
             y: 100,
-            text: "222"
+            color: "red",
+            text: "222222222"
           },
           {
             id: "node3",
             x: 300,
             y: 300,
-            text: "444"
+            color: "red",
+            text: "444444444"
           }
         ],
         edges: [
@@ -88,8 +90,8 @@ export default {
                 x: 0,
                 y: 0,
                 img: cfg.img,
-                width: 100,
-                height: 100,
+                width: 50,
+                height: 50,
               },
               draggable: true,
             });
@@ -98,7 +100,7 @@ export default {
         },
         // 返回菱形的路径
         getPath(cfg) {
-          const size = cfg.size || [100, 100]; // 如果没有 size 时的默认大小
+          const size = cfg.size || [200, 200]; // 如果没有 size 时的默认大小
           const width = size[0];
           const height = size[1];
           //  / 1 \
@@ -113,6 +115,7 @@ export default {
           ];
           return path;
         },
+        draggable: true,
       });
 
       // 封装点击添节点的交互

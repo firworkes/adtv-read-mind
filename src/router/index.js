@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-// import About from '../views/About.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +34,16 @@ Vue.use(VueRouter)
     path: '/draggableList',
     name: 'DraggableList',
     component: () => import('../views/DraggableList.vue')
+  },
+  {
+    path: '/antvhtml',
+    name: 'AntvHtml',
+    component: () => import('../views/AntvHtml.vue')
+  },
+  {
+    path: '/treedemo',
+    name: 'TreeDemo',
+    component: () => import('../views/TreeDemo.vue')
   }
 
 ]
