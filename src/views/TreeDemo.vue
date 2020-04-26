@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="container"></div>
+    <div><el-button value="addNode">按钮</el-button></div>
   </div>
 </template>
 
@@ -11,125 +12,139 @@ import {
   carOndragover,
   carOndragend,
   carOndragenter,
-  carOndrop
+  carOndrop,
+  graph
 } from "../assets/js/mindCard";
 export default {
   data() {
     return {
-      data: {
-        id: "Modeling Methods",
-        children: [
-          {
-            id: "Classification",
-            children: [
-              {
-                id: "Logistic regression"
-              },
-              {
-                id: "Linear discriminant analysis"
-              },
-              {
-                id: "Rules"
-              },
-              {
-                id: "Decision trees"
-              },
-              {
-                id: "Naive Bayes"
-              },
-              {
-                id: "K nearest neighbor"
-              },
-              {
-                id: "Probabilistic neural network"
-              },
-              {
-                id: "Support vector machine",
-                children: [{ id: "新增节点111" }, { id: "新增节点222" }]
-              }
-            ]
-          },
-          {
-            id: "Consensus",
-            children: [
-              {
-                id: "Models diversity",
-                children: [
-                  {
-                    id: "Different initializations"
-                  },
-                  {
-                    id: "Different parameter choices"
-                  },
-                  {
-                    id: "Different architectures"
-                  },
-                  {
-                    id: "Different modeling methods"
-                  },
-                  {
-                    id: "Different training sets"
-                  },
-                  {
-                    id: "Different feature sets"
-                  }
-                ]
-              },
-              {
-                id: "Methods",
-                children: [
-                  {
-                    id: "Classifier selection"
-                  },
-                  {
-                    id: "Classifier fusion"
-                  }
-                ]
-              },
-              {
-                id: "Common",
-                children: [
-                  {
-                    id: "Bagging"
-                  },
-                  {
-                    id: "Boosting"
-                  },
-                  {
-                    id: "AdaBoost"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            id: "Regression",
-            children: [
-              {
-                id: "Multiple linear regression"
-              },
-              {
-                id: "Partial least squares"
-              },
-              {
-                id: "Multi-layer feedforward neural network"
-              },
-              {
-                id: "General regression neural network"
-              },
-              {
-                id: "Support vector regression"
-              }
-            ]
-          }
-        ]
-      }
+      // data: {
+      //   id: "Modeling Methods",
+      //   children: [
+      //     {
+      //       id: "Classification",
+      //       children: [
+      //         {
+      //           id: "Logistic regression"
+      //         },
+      //         {
+      //           id: "Linear discriminant analysis"
+      //         },
+      //         {
+      //           id: "Rules"
+      //         },
+      //         {
+      //           id: "Decision trees"
+      //         },
+      //         {
+      //           id: "Naive Bayes"
+      //         },
+      //         {
+      //           id: "K nearest neighbor"
+      //         },
+      //         {
+      //           id: "Probabilistic neural network"
+      //         },
+      //         {
+      //           id: "Support vector machine",
+      //           children: [{ id: "新增节点111" }, { id: "新增节点222" }]
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       id: "Consensus",
+      //       children: [
+      //         {
+      //           id: "Models diversity",
+      //           children: [
+      //             {
+      //               id: "Different initializations"
+      //             },
+      //             {
+      //               id: "Different parameter choices"
+      //             },
+      //             {
+      //               id: "Different architectures"
+      //             },
+      //             {
+      //               id: "Different modeling methods"
+      //             },
+      //             {
+      //               id: "Different training sets"
+      //             },
+      //             {
+      //               id: "Different feature sets"
+      //             }
+      //           ]
+      //         },
+      //         {
+      //           id: "Methods",
+      //           children: [
+      //             {
+      //               id: "Classifier selection"
+      //             },
+      //             {
+      //               id: "Classifier fusion"
+      //             }
+      //           ]
+      //         },
+      //         {
+      //           id: "Common",
+      //           children: [
+      //             {
+      //               id: "Bagging"
+      //             },
+      //             {
+      //               id: "Boosting"
+      //             },
+      //             {
+      //               id: "AdaBoost"
+      //             }
+      //           ]
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       id: "Regression",
+      //       children: [
+      //         {
+      //           id: "Multiple linear regression"
+      //         },
+      //         {
+      //           id: "Partial least squares"
+      //         },
+      //         {
+      //           id: "Multi-layer feedforward neural network"
+      //         },
+      //         {
+      //           id: "General regression neural network"
+      //         },
+      //         {
+      //           id: "Support vector regression"
+      //         }
+      //       ]
+      //     }
+      //   ]
+      // }
     };
   },
   mounted() {
     this.showDom();
   },
+  computed: {
+    listData() {
+      return this.$store.state.data;
+    }
+
+  },
   methods: {
+    // mindData(val) {
+    //   let add = {x: 80, y: 650, depth: 1, id: "11111111111", children: []};
+    //   this.$store.commit("mindData", add)
+    //   this.showDom()
+    //   // console.log(this.listData)
+    // },
+
     showDom() {
       // 拖拽事件绑定全局
       window.carDragstart = carDragstart;
@@ -188,8 +203,7 @@ export default {
         },
         defaultNode: {
           size: [200, 50],
-
-          // shape: "rect",
+          // type: "rect",
           type: "dom-node",
 
           style: {
@@ -258,7 +272,9 @@ export default {
           }
         };
       });
-      graph.data(this.data);
+      // graph.changeData(this.listData)
+      // graph.refresh()
+      graph.data(this.listData);
       graph.render();
       graph.fitView();
     }
