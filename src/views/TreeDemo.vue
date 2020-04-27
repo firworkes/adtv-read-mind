@@ -1,7 +1,9 @@
 <template>
   <div>
     <div id="container"></div>
-    <div><el-button value="addNode">按钮</el-button></div>
+    <div>
+      <el-button value="addNode">按钮</el-button>
+    </div>
   </div>
 </template>
 
@@ -18,114 +20,114 @@ import {
 export default {
   data() {
     return {
-      // data: {
-      //   id: "Modeling Methods",
-      //   children: [
-      //     {
-      //       id: "Classification",
-      //       children: [
-      //         {
-      //           id: "Logistic regression"
-      //         },
-      //         {
-      //           id: "Linear discriminant analysis"
-      //         },
-      //         {
-      //           id: "Rules"
-      //         },
-      //         {
-      //           id: "Decision trees"
-      //         },
-      //         {
-      //           id: "Naive Bayes"
-      //         },
-      //         {
-      //           id: "K nearest neighbor"
-      //         },
-      //         {
-      //           id: "Probabilistic neural network"
-      //         },
-      //         {
-      //           id: "Support vector machine",
-      //           children: [{ id: "新增节点111" }, { id: "新增节点222" }]
-      //         }
-      //       ]
-      //     },
-      //     {
-      //       id: "Consensus",
-      //       children: [
-      //         {
-      //           id: "Models diversity",
-      //           children: [
-      //             {
-      //               id: "Different initializations"
-      //             },
-      //             {
-      //               id: "Different parameter choices"
-      //             },
-      //             {
-      //               id: "Different architectures"
-      //             },
-      //             {
-      //               id: "Different modeling methods"
-      //             },
-      //             {
-      //               id: "Different training sets"
-      //             },
-      //             {
-      //               id: "Different feature sets"
-      //             }
-      //           ]
-      //         },
-      //         {
-      //           id: "Methods",
-      //           children: [
-      //             {
-      //               id: "Classifier selection"
-      //             },
-      //             {
-      //               id: "Classifier fusion"
-      //             }
-      //           ]
-      //         },
-      //         {
-      //           id: "Common",
-      //           children: [
-      //             {
-      //               id: "Bagging"
-      //             },
-      //             {
-      //               id: "Boosting"
-      //             },
-      //             {
-      //               id: "AdaBoost"
-      //             }
-      //           ]
-      //         }
-      //       ]
-      //     },
-      //     {
-      //       id: "Regression",
-      //       children: [
-      //         {
-      //           id: "Multiple linear regression"
-      //         },
-      //         {
-      //           id: "Partial least squares"
-      //         },
-      //         {
-      //           id: "Multi-layer feedforward neural network"
-      //         },
-      //         {
-      //           id: "General regression neural network"
-      //         },
-      //         {
-      //           id: "Support vector regression"
-      //         }
-      //       ]
-      //     }
-      //   ]
-      // }
+      data: {
+        id: "Modeling Methods",
+        children: [
+          {
+            id: "Classification",
+            children: [
+              {
+                id: "Logistic regression"
+              },
+              {
+                id: "Linear discriminant analysis"
+              },
+              {
+                id: "Rules"
+              },
+              {
+                id: "Decision trees"
+              },
+              {
+                id: "Naive Bayes"
+              },
+              {
+                id: "K nearest neighbor"
+              },
+              {
+                id: "Probabilistic neural network"
+              },
+              {
+                id: "Support vector machine",
+                children: [{ id: "新增节点111" }, { id: "新增节点222" }]
+              }
+            ]
+          },
+          {
+            id: "Consensus",
+            children: [
+              {
+                id: "Models diversity",
+                children: [
+                  {
+                    id: "Different initializations"
+                  },
+                  {
+                    id: "Different parameter choices"
+                  },
+                  {
+                    id: "Different architectures"
+                  },
+                  {
+                    id: "Different modeling methods"
+                  },
+                  {
+                    id: "Different training sets"
+                  },
+                  {
+                    id: "Different feature sets"
+                  }
+                ]
+              },
+              {
+                id: "Methods",
+                children: [
+                  {
+                    id: "Classifier selection"
+                  },
+                  {
+                    id: "Classifier fusion"
+                  }
+                ]
+              },
+              {
+                id: "Common",
+                children: [
+                  {
+                    id: "Bagging"
+                  },
+                  {
+                    id: "Boosting"
+                  },
+                  {
+                    id: "AdaBoost"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "Regression",
+            children: [
+              {
+                id: "Multiple linear regression"
+              },
+              {
+                id: "Partial least squares"
+              },
+              {
+                id: "Multi-layer feedforward neural network"
+              },
+              {
+                id: "General regression neural network"
+              },
+              {
+                id: "Support vector regression"
+              }
+            ]
+          }
+        ]
+      }
     };
   },
   mounted() {
@@ -135,7 +137,6 @@ export default {
     listData() {
       return this.$store.state.data;
     }
-
   },
   methods: {
     // mindData(val) {
@@ -165,6 +166,7 @@ export default {
                 // 传入 DOM 的 html，带有原生 onclick 事件
                 html: `
             <div 
+              class="nodeItems"
               draggable="true" 
               ondrop="carOndrop(event, this)"
               ondragstart="carDragstart(event, this)" 
@@ -272,11 +274,22 @@ export default {
           }
         };
       });
+
+      // console.log(nodeItems)
       // graph.changeData(this.listData)
       // graph.refresh()
-      graph.data(this.listData);
+      graph.data(this.data);
       graph.render();
       graph.fitView();
+
+      // var nodeItems = document.querySelectorAll(".nodeItems");
+      // for(let item of nodeItems) {
+      // // console.log(item)
+      //   item.addEventListener('click', function(){
+      //       alert("这是第二中点击方式");
+      //   })
+      // }
+
     }
   }
 };

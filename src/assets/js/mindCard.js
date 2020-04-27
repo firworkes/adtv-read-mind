@@ -1,6 +1,6 @@
 var srcdiv = null; 
 var temp = null;
-const graph = null;
+var graph = null;
 
 import store from '../../store/index';
 
@@ -8,6 +8,7 @@ export const carDragstart = (event, divdom) => {  // 当开始拖动时
     // event.preventDefault()
     srcdiv = divdom;
     temp = divdom.innerHTML;
+    console.log(graph)
 
     let add = {x: 80, y: 650, depth: 2, id: "11111111111", children: []};
     let mindData = store.commit("mindData",add)
