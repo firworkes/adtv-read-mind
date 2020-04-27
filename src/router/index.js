@@ -44,6 +44,11 @@ Vue.use(VueRouter)
     path: '/treedemo',
     name: 'TreeDemo',
     component: () => import('../views/TreeDemo.vue')
+  },
+  {
+    path: '/d3demo',
+    name: 'D3demo',
+    component: () => import('../views/D3demo.vue')
   }
 
 ]
